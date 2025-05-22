@@ -30,7 +30,7 @@ const Cart = () => {
 	};
 
 	return (
-		<div className="divider">
+		<div style={{ padding: "20px", textAlign: "center" }}>
 			<h2>Your Cart</h2>
 			{cart.length === 0 ? (
 				<p>Cart is empty</p>

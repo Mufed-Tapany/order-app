@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { placeOrder } from "../services/api";
 
 const CartContext = createContext();
 
@@ -35,14 +34,6 @@ export const CartProvider = ({ children }) => {
 			),
 		);
 	};
-
-	// const handleNameInputChange = (value) => {
-	// 	setNameInput(value);
-	// };
-
-	// const handleEmailInputChange = (value) => {
-	// 	setEmailInput(value);
-	// };
 
 	const clearCart = () => setCart([]);
 
