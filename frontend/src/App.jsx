@@ -1,11 +1,12 @@
+import "./App.css";
 import { Link, Route, Routes } from "react-router-dom";
 import { useCart } from "./context/CartContext";
 import Cart from "./pages/Cart";
 import Main from "./pages/Main";
-import "./App.css";
 
-const App = () => {
+function App() {
 	const { cart } = useCart();
+
 	return (
 		<div>
 			<nav style={{ display: "flex", gap: 20, marginBottom: 20 }}>
@@ -21,6 +22,6 @@ const App = () => {
 			</Routes>
 		</div>
 	);
-};
+}
 
 export default App;
