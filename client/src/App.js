@@ -2,7 +2,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import { useCart } from "./context/CartContext";
 import Cart from "./pages/Cart";
 import Main from "./pages/Main";
-import "./App.css"
+import "./App.css";
 
 const App = () => {
 	const { cart } = useCart();
@@ -12,6 +12,8 @@ const App = () => {
 				<Link to="/">Menu</Link>
 				<Link to="/cart">Cart ({cart.length})</Link>
 			</nav>
+			{/* biome-ignore lint/style/useSelfClosingElements: <explanation> */}
+			<div className="divider"></div>
 
 			<Routes>
 				<Route path="/" element={<Main />} />

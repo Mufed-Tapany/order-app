@@ -32,6 +32,11 @@ const Cart = () => {
 	return (
 		<div style={{ padding: "20px", textAlign: "center" }}>
 			<h2>Your Cart</h2>
+			{cart.length !== 0 && (
+				<button type="button" className="button-clear" onClick={clearCart}>
+					Clean Cart
+				</button>
+			)}
 			{cart.length === 0 ? (
 				<p>Cart is empty</p>
 			) : (

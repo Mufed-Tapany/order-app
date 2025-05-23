@@ -52,6 +52,18 @@
 	border: 1px solid #ccc;
 }
 
+.button-clear {
+	padding: 5px;
+	width: 100px;
+	border: 1px solid #ccc;
+	background-color: white;
+}
+
+.button-clear:hover {
+	color: white;
+	background-color: #d74907;
+}
+
 .formInput {
 	border: 1px solid #ccc;
 	padding: 10px;
