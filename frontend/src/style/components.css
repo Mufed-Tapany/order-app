@@ -8,6 +8,11 @@
 	margin: 0 8px;
 }
 
+.centered-site {
+	padding: 20px;
+	text-align: center;
+}
+
 .divider {
 	margin-top: 25px;
 	border-top: 1px solid #ccc;
@@ -44,12 +49,13 @@
 	color: white;
 }
 
-.button {
+.remove-button {
 	background-color: #d74907;
 	color: white;
 	padding: 5px;
 	width: 60px;
 	border: 1px solid #ccc;
+	margin-left: 10px;
 }
 
 .button-clear {

@@ -9,7 +9,7 @@ function App() {
 
 	return (
 		<div>
-			<nav style={{ display: "flex", gap: 20, marginBottom: 20 }}>
+			<nav>
 				<Link to="/">Menu</Link>
 				<Link to="/cart">Cart ({cart.length})</Link>
 			</nav>

@@ -17,7 +17,7 @@ const Main = () => {
 	if (error) return <p>{error}</p>;
 
 	return (
-		<div style={{ padding: "20px", textAlign: "center" }}>
+		<div className="centered-site">
 			<h1>Menu</h1>
 			<div className="menuList">
 				{items.map((item) => (

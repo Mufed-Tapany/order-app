@@ -6,7 +6,7 @@ const MenuCard = ({ item, onClick }) => {
 			<h3>{item.name}</h3>
 			<p>${item.price}</p>
 			<button type="submit" onClick={() => onClick(item)} className="addButton">
-				Add to Card
+				Add to Cart
 			</button>
 		</div>
 	);

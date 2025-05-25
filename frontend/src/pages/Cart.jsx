@@ -30,7 +30,7 @@ const Cart = () => {
 	};
 
 	return (
-		<div style={{ padding: "20px", textAlign: "center" }}>
+		<div className="centered-site">
 			<h2>Your Cart</h2>
 			{cart.length !== 0 && (
 				<button type="button" className="button-clear" onClick={clearCart}>
@@ -55,10 +55,9 @@ const Cart = () => {
 								/>
 								— ${(item.price * item.quantity).toFixed(2)}
 								<button
-									className="button"
+									className="remove-button"
 									type="button"
 									onClick={() => removeFromCart(i)}
-									style={{ marginLeft: "10px" }}
 								>
 									Rmove
 								</button>
