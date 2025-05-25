@@ -20,7 +20,13 @@ beforeEach(() => {
 
 describe("createOrder", () => {
 	it("inserts a new order", async () => {
-		const result = await createOrder("Test User", 1, "Pizza", 2);
+		const result = await createOrder(
+			"Test User",
+			"aliabas@gmail.com",
+			1,
+			"Pizza",
+			2,
+		);
 		expect(result.changes).toBe(1);
 	});
 });
@@ -32,6 +38,7 @@ describe("POST /order", () => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
 				customer_name: "Ali Abas",
+				customer_email: "aliabas@gmail.com",
 				items: [{ id: 2, name: "Burger", price: 9, quantity: 1 }],
 			}),
 		});
