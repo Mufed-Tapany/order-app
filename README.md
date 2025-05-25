@@ -14,7 +14,7 @@ then
 
 then
 
-#### bun run derver
+#### bun run server
 
 ## Testing
 
