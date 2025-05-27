@@ -12,5 +12,3 @@ services:
       dockerfile: backend/Dockerfile
     ports:
       - "3001:3001"
-    volumes:
-      - ./backend/restaurant.db:/app/restaurant.db
