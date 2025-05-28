@@ -10,7 +10,7 @@ bun build server.ts --target=bun --outfile dist/bundle.js && cd ..
 echo "Building Docker images and starting containers..."
 export COMPOSE_BAKE=true
 
-docker compose build
-docker compose up -d
+docker compose -f docker-compose.prod.yml build
+docker compose -p order-app-prod -f docker-compose.prod.yml up -d
 
 echo "All done! Frontend at http://localhost:3000, Backend at http://localhost:3001"

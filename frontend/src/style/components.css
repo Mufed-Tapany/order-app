@@ -27,10 +27,10 @@
 
 .menuCard {
 	border: 1px solid #ccc;
-	background-color: "white";
+	background-color: white;
 	border-radius: 8px;
-	padding: 1rem;
-	margin: 0.5rem;
+	padding: 16px;
+	margin: 8px;
 	width: 200px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -49,28 +49,100 @@
 	color: white;
 }
 
-.remove-button {
-	background-color: #d74907;
-	color: white;
-	padding: 5px;
-	width: 60px;
-	border: 1px solid #ccc;
-	margin-left: 10px;
+.cart-container {
+	max-width: 600px;
+	margin: 32px auto;
+	padding: 24px;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.button-clear {
-	padding: 5px;
-	width: 100px;
-	border: 1px solid #ccc;
-	background-color: white;
+.cart-title {
+	text-align: center;
+	margin-bottom: 24px;
+	font-size: 28.8px;
 }
 
-.button-clear:hover {
-	color: white;
-	background-color: #d74907;
+.cart-clear-btn {
+	background: #e74c3c;
+	color: #fff;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-bottom: 16px;
 }
 
-.formInput {
+.cart-empty {
+	text-align: center;
+	font-size: 19.2px;
+}
+
+.cart-items {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.cart-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16px;
+	border-bottom: 1px solid #eee;
+}
+
+.item-info {
+	flex: 1;
+}
+
+.item-actions {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.item-qty {
+	width: 50px;
+	padding: 4px;
+	text-align: center;
+}
+
+.item-remove-btn {
+	background: #bdc3c7;
+	border: none;
+	border-radius: 4px;
+	padding: 4.8px 11.2px;
+	cursor: pointer;
+}
+
+.cart-total {
+	text-align: right;
+	margin-top: 16px;
+	font-size: 19.2px;
+}
+
+.order-form {
+	margin-top: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.form-input {
+	padding: 8px;
 	border: 1px solid #ccc;
-	padding: 10px;
+	border-radius: 6px;
+	width: 100%;
+}
+
+.submit-order-btn {
+	background: #1b9597;
+	color: #fff;
+	padding: 12px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 16px;
 }

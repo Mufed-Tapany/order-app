@@ -30,60 +30,79 @@ const Cart = () => {
 	};
 
 	return (
-		<div className="centered-site">
-			<h2>Your Cart</h2>
-			{cart.length !== 0 && (
-				<button type="button" className="button-clear" onClick={clearCart}>
-					Clean Cart
+		<div className="cart-container">
+			<h2 className="cart-title">Your Cart</h2>
+
+			{cart.length > 0 && (
+				<button type="button" className="cart-clear-btn" onClick={clearCart}>
+					Clear Cart
 				</button>
 			)}
+
 			{cart.length === 0 ? (
-				<p>Cart is empty</p>
+				<p className="cart-empty">Your cart is empty.</p>
 			) : (
 				<>
-					<div>
+					<ul className="cart-items">
 						{cart.map((item, i) => (
-							<p key={item.id}>
-								{item.name} x{" "}
-								<input
-									className="product-qty"
-									type="number"
-									name="product-qty"
-									min="1"
-									value={item.quantity}
-									onChange={(e) => updateQuantity(i, Number(e.target.value))}
-								/>
-								— ${(item.price * item.quantity).toFixed(2)}
-								<button
-									className="remove-button"
-									type="button"
-									onClick={() => removeFromCart(i)}
-								>
-									Rmove
-								</button>
-							</p>
+							<li key={item.id} className="cart-item">
+								<div className="item-info">
+									<h4>{item.name}</h4>
+									<p>${item.price.toFixed(2)} each</p>
+								</div>
+								<div className="item-actions">
+									<input
+										className="item-qty"
+										type="number"
+										min="1"
+										value={item.quantity}
+										onChange={(e) => updateQuantity(i, Number(e.target.value))}
+									/>
+									<p className="item-total">
+										${(item.price * item.quantity).toFixed(2)}
+									</p>
+									<button
+										type="button"
+										className="item-remove-btn"
+										onClick={() => removeFromCart(i)}
+									>
+										Remove
+									</button>
+								</div>
+							</li>
 						))}
-					</div>
-					<p>
+					</ul>
+
+					<p className="cart-total">
 						<strong>Total: ${totalPrice.toFixed(2)}</strong>
 					</p>
-					<input
-						className="formInput"
-						type="text"
-						name="name"
-						placeholder="Your name"
-						onChange={(e) => setName(e.target.value)}
-					/>
-					<input
-						className="formInput"
-						type="text"
-						name="email"
-						placeholder="Email address"
-						onChange={(e) => setEmail(e.target.value)}
-					/>
-					<button type="submit" onClick={handleOrder} className="addButton">
-						Place Order
-					</button>
+
+					<section className="order-form">
+						<h3>Complete Your Order</h3>
+						<input
+							className="form-input"
+							type="text"
+							name="name"
+							placeholder="Your name"
+							value={name}
+							onChange={(e) => setName(e.target.value)}
+						/>
+						<input
+							className="form-input"
+							type="email"
+							name="email"
+							placeholder="Email address"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+						/>
+						<button
+							type="submit"
+							className="submit-order-btn"
+							onClick={handleOrder}
+						>
+							Place Order
+						</button>
+					</section>
 				</>
 			)}
 		</div>
