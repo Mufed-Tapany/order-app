@@ -1,7 +1,8 @@
 import RatinngStars from "./RatingStars";
 import "../style/components.css";
+import type { DialogProps } from "../../types";
 
-const Dialog = ({ onClose, onSubmitRating }) => {
+const Dialog = ({ onClose, onSubmitRating }: DialogProps) => {
 	return (
 		<div>
 			<h3>Thanks for submiting your order</h3>

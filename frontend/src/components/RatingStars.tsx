@@ -5,17 +5,17 @@ const RatinngStars = ({ max = 5, min = 0 }) => {
 	const [selected, setSeletced] = useState(min);
 	const [hoverd, setHovered] = useState(0);
 
-	const stars = [...Array(max)].map((_, i) => {
+	const stars = [...Array(max)].map((_, i: number) => {
 		const index = i + 1;
 		const isFilled = hoverd ? index <= hoverd : index <= selected;
 		return { index, isFilled };
 	});
 
-	const handleSelected = (i) => {
+	const handleSelected = (i: number) => {
 		setSeletced(i);
 	};
 
-	const handleHovered = (i) => {
+	const handleHovered = (i: number) => {
 		setHovered(i);
 	};
 

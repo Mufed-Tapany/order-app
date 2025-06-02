@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import MenuCard from "../components/MenuCard";
 import { fetchMenu } from "../services/api";
 import "../style/components.css";
+import type { CartItem } from "../../types";
 import { useCart } from "../context/CartContext";
 
 const Main = () => {
@@ -20,8 +21,8 @@ const Main = () => {
 		<div className="centered-site">
 			<h1>Menu</h1>
 			<div className="menuList">
-				{items.map((item) => (
-					<MenuCard key={item.id} item={item} onClick={addToCart} />
+				{items.map((item: CartItem) => (
+					<MenuCard key={item.id} item={item} addToCart={addToCart} />
 				))}
 			</div>
 		</div>
