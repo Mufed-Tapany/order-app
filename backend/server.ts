@@ -4,19 +4,19 @@ import { corsHeaders } from "./utils/cors";
 
 const server = Bun.serve({
 	port: 3001,
-	async fetch(req) {
-		const url = new URL(req.url);
+	async fetch(request: Request) {
+		const url = new URL(request.url);
 
-		if (req.method === "OPTIONS") {
+		if (request.method === "OPTIONS") {
 			return new Response(null, { headers: corsHeaders });
 		}
 
-		if (url.pathname === "/menu" && req.method === "GET") {
-			return menuHandler(req);
+		if (url.pathname === "/menu" && request.method === "GET") {
+			return menuHandler(request);
 		}
 
-		if (url.pathname === "/order" && req.method === "POST") {
-			return orderHandler(req);
+		if (url.pathname === "/order" && request.method === "POST") {
+			return orderHandler(request);
 		}
 
 		return new Response("Not Found", { status: 404 });

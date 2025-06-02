@@ -1,18 +1,18 @@
 import { createOrder } from "../db/order.model";
 import { corsHeaders } from "../utils/cors";
 
-type OrderItem = {
+interface OrderItem {
 	id: number;
 	name: string;
 	price: number;
 	quantity: number;
-};
+}
 
-type OrderRequest = {
+interface OrderRequest {
 	customer_name: string;
 	customer_email: string;
 	items: OrderItem[];
-};
+}
 
 const badRequest = (message: string) =>
 	new Response(message, {
@@ -20,9 +20,9 @@ const badRequest = (message: string) =>
 		headers: corsHeaders,
 	});
 
-export const orderHandler = async (req: Request): Promise<Response> => {
+export const orderHandler = async (request: Request): Promise<Response> => {
 	try {
-		const body = (await req.json()) as OrderRequest;
+		const body = (await request.json()) as OrderRequest;
 
 		if (
 			!body.customer_name ||
