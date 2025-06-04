@@ -18,8 +18,8 @@ interface CartProviderProps {
 
 export const CartProvider = ({ children }: CartProviderProps) => {
 	const [cart, setCart] = useState<CartItem[]>([]);
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
+	const [name, setName] = useState<string>("");
+	const [email, setEmail] = useState<string>("");
 
 	const addToCart = (item: CartItem) => {
 		setCart((prev) => {

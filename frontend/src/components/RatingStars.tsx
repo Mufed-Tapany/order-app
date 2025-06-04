@@ -2,8 +2,8 @@ import { useState } from "react";
 import "../style/components.css";
 
 const RatinngStars = ({ max = 5, min = 0 }) => {
-	const [selected, setSeletced] = useState(min);
-	const [hoverd, setHovered] = useState(0);
+	const [selected, setSeletced] = useState<number>(min);
+	const [hoverd, setHovered] = useState<number>(0);
 
 	const stars = [...Array(max)].map((_, i: number) => {
 		const index = i + 1;

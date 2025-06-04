@@ -6,7 +6,7 @@ import { useCart } from "../context/CartContext";
 import { placeOrder } from "../services/api";
 
 const Cart = () => {
-	const [showRating, setShowRating] = useState(false);
+	const [showRating, setShowRating] = useState<boolean>(false);
 	const navigate = useNavigate();
 	const {
 		cart,

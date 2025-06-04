@@ -6,13 +6,13 @@ import type { CartItem } from "../../types";
 import { useCart } from "../context/CartContext";
 
 const Main = () => {
-	const [items, setItems] = useState([]);
-	const [error, setError] = useState("");
+	const [items, setItems] = useState<CartItem[]>([]);
+	const [error, setError] = useState<string>("");
 	const { addToCart } = useCart();
 	useEffect(() => {
 		fetchMenu()
 			.then(setItems)
-			.catch((err) => setError(err.message));
+			.catch((error: Error) => setError(error.message));
 	}, []);
 
 	if (error) return <p>{error}</p>;
