@@ -1,6 +1,7 @@
 import "../style/components.css";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import type { OrderData } from "../../types";
 import Dialog from "../components/Dialog";
 import { useCart } from "../context/CartContext";
 import { placeOrder } from "../services/api";
@@ -19,32 +20,56 @@ const Cart = () => {
 		setEmail,
 	} = useCart();
 
-	const totalPrice = cart.reduce(
-		(sum, item) => sum + item.price * item.quantity,
-		0,
+	const totalPrice = useMemo(() => {
+		return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+	}, [cart]);
+
+	const handleOrder = useCallback(
+		async (data: OrderData) => {
+			try {
+				await placeOrder(data.cart, data.name, data.email);
+				clearCart();
+				setShowRating(true);
+			} catch (error) {
+				alert(alert(`Failed to place order: ${error.message}`));
+			}
+		},
+		[clearCart],
 	);
 
-	const handleOrder = async () => {
-		try {
-			await placeOrder(cart, name, email);
-			clearCart();
-			setShowRating(true);
-		} catch (error) {
-			alert(`Failed to place order: ${error.message}`);
-		}
-	};
+	const onCartSubmit = useCallback(
+		async (e: React.FormEvent<HTMLFormElement>) => {
+			e.preventDefault();
+			const formData = new FormData(e.currentTarget as HTMLFormElement);
 
-	const onCloseRatingDialog = () => {
-		setShowRating(false);
-	};
+			const name = formData.get("name")?.toString() || "";
+			const email = formData.get("email")?.toString() || "";
 
-	const onSubmitRatingDialog = () => {
+			const data: OrderData = {
+				name,
+				email,
+				cart,
+			};
+
+			for (const [key, value] of formData.entries()) {
+				data[key] = value;
+			}
+
+			data.cart = cart;
+			await handleOrder(data);
+		},
+		[cart, handleOrder],
+	);
+
+	const onCloseRatingDialog = useCallback(() => {
 		setShowRating(false);
-	};
+	}, []);
+
+	const formId = "cart-form";
 
 	return (
 		<div className="cart-container">
-			{!showRating && (
+			{!showRating ? (
 				<div>
 					<h2 className="cart-title">Your Cart</h2>
 					{cart.length > 0 && (
@@ -57,7 +82,7 @@ const Cart = () => {
 						</button>
 					)}
 
-					{cart.length === 0 && !showRating ? (
+					{cart.length === 0 ? (
 						<div className="cart-empty">
 							<p>Your cart is empty.</p>
 							<button
@@ -70,7 +95,7 @@ const Cart = () => {
 							</button>
 						</div>
 					) : (
-						<>
+						<form id={formId} onSubmit={onCartSubmit}>
 							<ul className="cart-items">
 								{cart.map((item, i) => (
 									<li key={item.id} className="cart-item">
@@ -81,11 +106,13 @@ const Cart = () => {
 										<div className="item-actions">
 											<input
 												className="item-qty"
+												name="quantity"
 												type="number"
+												form={formId}
 												min="1"
 												value={item.quantity}
 												onChange={(e) =>
-													updateQuantity(i, Number(e.target.value))
+													updateQuantity(item.id, e.target.valueAsNumber)
 												}
 											/>
 											<p className="item-total">
@@ -94,7 +121,7 @@ const Cart = () => {
 											<button
 												type="button"
 												className="item-remove-btn"
-												onClick={() => removeFromCart(i)}
+												onClick={() => removeFromCart(item.id)}
 											>
 												Remove
 											</button>
@@ -115,7 +142,10 @@ const Cart = () => {
 									name="name"
 									placeholder="Your name"
 									value={name}
+									defaultValue={""}
 									onChange={(e) => setName(e.target.value)}
+									form={formId}
+									required
 								/>
 								<input
 									className="form-input"
@@ -123,24 +153,22 @@ const Cart = () => {
 									name="email"
 									placeholder="Email address"
 									value={email}
+									defaultValue={""}
 									onChange={(e) => setEmail(e.target.value)}
+									form={formId}
+									required
 								/>
-								<button
-									type="submit"
-									className="submit-order-btn"
-									onClick={handleOrder}
-								>
+								<button type="submit" className="submit-order-btn">
 									Place Order
 								</button>
 							</section>
-						</>
+						</form>
 					)}
 				</div>
-			)}
-			{showRating && (
+			) : (
 				<Dialog
 					onClose={onCloseRatingDialog}
-					onSubmitRating={onSubmitRatingDialog}
+					onSubmitRating={onCloseRatingDialog}
 				/>
 			)}
 		</div>

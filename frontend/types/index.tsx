@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export interface CartItem {
 	id: number;
 	name: string;
@@ -25,4 +27,14 @@ export interface DialogProps {
 export interface MenuCardProps {
 	item: CartItem;
 	addToCart: (item: CartItem) => void;
+}
+
+export interface OrderData {
+	name: string;
+	email: string;
+	cart: CartItem[];
+}
+
+export interface CartProviderProps {
+	children: ReactNode;
 }

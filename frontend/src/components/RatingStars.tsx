@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import "../style/components.css";
 
 const RatinngStars = ({ max = 5, min = 0 }) => {
@@ -11,17 +11,17 @@ const RatinngStars = ({ max = 5, min = 0 }) => {
 		return { index, isFilled };
 	});
 
-	const handleSelected = (i: number) => {
+	const handleSelected = useCallback((i: number) => {
 		setSeletced(i);
-	};
+	}, []);
 
-	const handleHovered = (i: number) => {
+	const handleHovered = useCallback((i: number) => {
 		setHovered(i);
-	};
+	}, []);
 
-	const handleMouseLeave = () => {
+	const handleMouseLeave = useCallback(() => {
 		setHovered(0);
-	};
+	}, []);
 
 	return (
 		<div onMouseLeave={handleMouseLeave}>

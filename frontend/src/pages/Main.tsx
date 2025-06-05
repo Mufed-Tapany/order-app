@@ -7,7 +7,7 @@ import { useCart } from "../context/CartContext";
 
 const Main = () => {
 	const [items, setItems] = useState<CartItem[]>([]);
-	const [error, setError] = useState<string>("");
+	const [error, setError] = useState<string>();
 	const { addToCart } = useCart();
 	useEffect(() => {
 		fetchMenu()
@@ -18,8 +18,8 @@ const Main = () => {
 	if (error) return <p>{error}</p>;
 
 	return (
-		<div className="centered-site">
-			<h1>Menu</h1>
+		<div>
+			<h1 className="centered-site">Menu</h1>
 			<div className="menuList">
 				{items.map((item: CartItem) => (
 					<MenuCard key={item.id} item={item} addToCart={addToCart} />

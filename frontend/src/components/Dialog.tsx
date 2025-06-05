@@ -1,12 +1,13 @@
 import RatinngStars from "./RatingStars";
 import "../style/components.css";
+import React from "react";
 import type { DialogProps } from "../../types";
 
-const Dialog = ({ onClose, onSubmitRating }: DialogProps) => {
+const Dialog = React.memo(({ onClose, onSubmitRating }: DialogProps) => {
 	return (
 		<div>
-			<h3>Thanks for submiting your order</h3>
-			<p>Would you like to rate your order expierence wiht us ?</p>
+			<h3>Thanks for submitting your order</h3>
+			<p>Would you like to rate your order experience with us ?</p>
 			<RatinngStars />
 			<button className="submit-order-btn" type="submit" onClick={onClose}>
 				Submit Rating
@@ -16,6 +17,6 @@ const Dialog = ({ onClose, onSubmitRating }: DialogProps) => {
 			</button>
 		</div>
 	);
-};
+});
 
 export default Dialog;
