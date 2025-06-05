@@ -1,25 +1,25 @@
-import { menuHandler } from "./routes/menu";
-import { orderHandler } from "./routes/order";
-import { corsHeaders } from "./utils/cors";
+import { menuHandler } from './routes/menu';
+import { orderHandler } from './routes/order';
+import { corsHeaders } from './utils/cors';
 
 const server = Bun.serve({
 	port: 3001,
 	async fetch(request: Request) {
 		const url = new URL(request.url);
 
-		if (request.method === "OPTIONS") {
+		if (request.method === 'OPTIONS') {
 			return new Response(null, { headers: corsHeaders });
 		}
 
-		if (url.pathname === "/menu" && request.method === "GET") {
-			return menuHandler(request);
+		if (url.pathname === '/menu' && request.method === 'GET') {
+			return menuHandler();
 		}
 
-		if (url.pathname === "/order" && request.method === "POST") {
+		if (url.pathname === '/order' && request.method === 'POST') {
 			return orderHandler(request);
 		}
 
-		return new Response("Not Found", { status: 404 });
+		return new Response('Not Found', { status: 404 });
 	},
 });
 

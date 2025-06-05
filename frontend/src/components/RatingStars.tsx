@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
-import "../style/components.css";
+import { useCallback, useState } from 'react';
+import '../style/components.css';
 
 const RatinngStars = ({ max = 5, min = 0 }) => {
 	const [selected, setSeletced] = useState<number>(min);
@@ -33,12 +33,12 @@ const RatinngStars = ({ max = 5, min = 0 }) => {
 					onClick={() => handleSelected(index)}
 					onMouseEnter={() => handleHovered(index)}
 					xmlns="http://www.w3.org/2000/svg"
-					fill={isFilled ? "gold" : "none"}
+					fill={isFilled ? 'gold' : 'none'}
 					stroke="currentColor"
 					strokeWidth="2"
 					width="32"
 					height="32"
-					style={{ cursor: "pointer" }}
+					style={{ cursor: 'pointer' }}
 				>
 					<path
 						strokeLinecap="round"

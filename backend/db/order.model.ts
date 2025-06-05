@@ -1,4 +1,4 @@
-import { db } from "./index";
+import { db } from './index';
 
 // biome-ignore lint/style/noUnusedTemplateLiteral: <explanation>
 db.run(`DROP TABLE IF EXISTS orders`);
@@ -21,9 +21,12 @@ export const createOrder = (
 	customerEmail: string,
 	itemId: number,
 	itemName: string,
-	quantity: number,
+	quantity: number
 ) =>
-	db.run(
-		"INSERT INTO orders (customer_name, customer_email, item_id, item_name, quantity) VALUES (?, ?, ?, ?, ?)",
-		[customerName, customerEmail, itemId, itemName, quantity],
-	);
+	db.run('INSERT INTO orders (customer_name, customer_email, item_id, item_name, quantity) VALUES (?, ?, ?, ?, ?)', [
+		customerName,
+		customerEmail,
+		itemId,
+		itemName,
+		quantity,
+	]);

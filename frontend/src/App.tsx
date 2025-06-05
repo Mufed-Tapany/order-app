@@ -1,8 +1,8 @@
-import "./App.css";
-import { Link, Route, Routes } from "react-router-dom";
-import { useCart } from "./context/CartContext";
-import Cart from "./pages/Cart";
-import Main from "./pages/Main";
+import './App.css';
+import { Link, Route, Routes } from 'react-router-dom';
+import { useCart } from './context/CartContext';
+import Cart from './pages/Cart';
+import Main from './pages/Main';
 
 function App() {
 	const { cart } = useCart();

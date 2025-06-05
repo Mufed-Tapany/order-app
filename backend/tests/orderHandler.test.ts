@@ -1,6 +1,6 @@
-import { beforeEach, describe, expect, it } from "bun:test";
-import { db } from "../db/index";
-import { createOrder } from "../db/order.model";
+import { beforeEach, describe, expect, it } from 'bun:test';
+import { db } from '../db/index';
+import { createOrder } from '../db/order.model';
 
 type OrderResponse = {
 	success: boolean;
@@ -12,34 +12,28 @@ type MenuItem = {
 	price: number;
 };
 
-const API_BASE = "http://localhost:3001";
+const API_BASE = 'http://localhost:3001';
 
 beforeEach(() => {
-	db.run("DELETE FROM orders");
+	db.run('DELETE FROM orders');
 });
 
-describe("createOrder", () => {
-	it("inserts a new order", async () => {
-		const result = await createOrder(
-			"Test User",
-			"aliabas@gmail.com",
-			1,
-			"Pizza",
-			2,
-		);
+describe('createOrder', () => {
+	it('inserts a new order', async () => {
+		const result = await createOrder('Test User', 'aliabas@gmail.com', 1, 'Pizza', 2);
 		expect(result.changes).toBe(1);
 	});
 });
 
-describe("POST /order", () => {
-	it("should create an order and return 200", async () => {
+describe('POST /order', () => {
+	it('should create an order and return 200', async () => {
 		const res = await fetch(`${API_BASE}/order`, {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
-				customer_name: "Ali Abas",
-				customer_email: "aliabas@gmail.com",
-				items: [{ id: 2, name: "Burger", price: 9, quantity: 1 }],
+				customer_name: 'Ali Abas',
+				customer_email: 'aliabas@gmail.com',
+				items: [{ id: 2, name: 'Burger', price: 9, quantity: 1 }],
 			}),
 		});
 
@@ -49,8 +43,8 @@ describe("POST /order", () => {
 	});
 });
 
-describe("GET /menu", () => {
-	it("should get the list of the menu and return 200", async () => {
+describe('GET /menu', () => {
+	it('should get the list of the menu and return 200', async () => {
 		const res = await fetch(`${API_BASE}/menu`);
 
 		expect(res.status).toBe(200);
@@ -59,8 +53,8 @@ describe("GET /menu", () => {
 		expect(data.length).toBeGreaterThan(0);
 
 		const item = data[0];
-		expect(item).toHaveProperty("id");
-		expect(item).toHaveProperty("name");
-		expect(item).toHaveProperty("price");
+		expect(item).toHaveProperty('id');
+		expect(item).toHaveProperty('name');
+		expect(item).toHaveProperty('price');
 	});
 });

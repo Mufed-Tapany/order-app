@@ -1,24 +1,15 @@
-import "../style/components.css";
-import { useCallback, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import type { OrderData } from "../../types";
-import Dialog from "../components/Dialog";
-import { useCart } from "../context/CartContext";
-import { placeOrder } from "../services/api";
+import '../style/components.css';
+import { useCallback, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import type { OrderData } from '../../types';
+import Dialog from '../components/Dialog';
+import { useCart } from '../context/CartContext';
+import { placeOrder } from '../services/api';
 
 const Cart = () => {
 	const [showRating, setShowRating] = useState<boolean>(false);
 	const navigate = useNavigate();
-	const {
-		cart,
-		removeFromCart,
-		updateQuantity,
-		clearCart,
-		name,
-		setName,
-		email,
-		setEmail,
-	} = useCart();
+	const { cart, removeFromCart, updateQuantity, clearCart, name, setName, email, setEmail } = useCart();
 
 	const totalPrice = useMemo(() => {
 		return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -34,7 +25,7 @@ const Cart = () => {
 				alert(alert(`Failed to place order: ${error.message}`));
 			}
 		},
-		[clearCart],
+		[clearCart]
 	);
 
 	const onCartSubmit = useCallback(
@@ -42,8 +33,8 @@ const Cart = () => {
 			e.preventDefault();
 			const formData = new FormData(e.currentTarget as HTMLFormElement);
 
-			const name = formData.get("name")?.toString() || "";
-			const email = formData.get("email")?.toString() || "";
+			const name = formData.get('name')?.toString() || '';
+			const email = formData.get('email')?.toString() || '';
 
 			const data: OrderData = {
 				name,
@@ -58,14 +49,14 @@ const Cart = () => {
 			data.cart = cart;
 			await handleOrder(data);
 		},
-		[cart, handleOrder],
+		[cart, handleOrder]
 	);
 
 	const onCloseRatingDialog = useCallback(() => {
 		setShowRating(false);
 	}, []);
 
-	const formId = "cart-form";
+	const formId = 'cart-form';
 
 	return (
 		<div className="cart-container">
@@ -73,11 +64,7 @@ const Cart = () => {
 				<div>
 					<h2 className="cart-title">Your Cart</h2>
 					{cart.length > 0 && (
-						<button
-							type="button"
-							className="cart-clear-btn"
-							onClick={clearCart}
-						>
+						<button type="button" className="cart-clear-btn" onClick={clearCart}>
 							Clear Cart
 						</button>
 					)}
@@ -88,8 +75,8 @@ const Cart = () => {
 							<button
 								className="submit-order-btn"
 								type="button"
-								style={{ marginTop: "30px" }}
-								onClick={() => navigate("/")}
+								style={{ marginTop: '30px' }}
+								onClick={() => navigate('/')}
 							>
 								Back to menu
 							</button>
@@ -97,7 +84,7 @@ const Cart = () => {
 					) : (
 						<form id={formId} onSubmit={onCartSubmit}>
 							<ul className="cart-items">
-								{cart.map((item, i) => (
+								{cart.map((item) => (
 									<li key={item.id} className="cart-item">
 										<div className="item-info">
 											<h4>{item.name}</h4>
@@ -111,18 +98,10 @@ const Cart = () => {
 												form={formId}
 												min="1"
 												value={item.quantity}
-												onChange={(e) =>
-													updateQuantity(item.id, e.target.valueAsNumber)
-												}
+												onChange={(e) => updateQuantity(item.id, e.target.valueAsNumber)}
 											/>
-											<p className="item-total">
-												${(item.price * item.quantity).toFixed(2)}
-											</p>
-											<button
-												type="button"
-												className="item-remove-btn"
-												onClick={() => removeFromCart(item.id)}
-											>
+											<p className="item-total">${(item.price * item.quantity).toFixed(2)}</p>
+											<button type="button" className="item-remove-btn" onClick={() => removeFromCart(item.id)}>
 												Remove
 											</button>
 										</div>
@@ -142,7 +121,7 @@ const Cart = () => {
 									name="name"
 									placeholder="Your name"
 									value={name}
-									defaultValue={""}
+									defaultValue={''}
 									onChange={(e) => setName(e.target.value)}
 									form={formId}
 									required
@@ -153,7 +132,7 @@ const Cart = () => {
 									name="email"
 									placeholder="Email address"
 									value={email}
-									defaultValue={""}
+									defaultValue={''}
 									onChange={(e) => setEmail(e.target.value)}
 									form={formId}
 									required
@@ -166,10 +145,7 @@ const Cart = () => {
 					)}
 				</div>
 			) : (
-				<Dialog
-					onClose={onCloseRatingDialog}
-					onSubmitRating={onCloseRatingDialog}
-				/>
+				<Dialog onClose={onCloseRatingDialog} onSubmitRating={onCloseRatingDialog} />
 			)}
 		</div>
 	);

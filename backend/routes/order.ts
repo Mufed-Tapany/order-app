@@ -1,5 +1,5 @@
-import { createOrder } from "../db/order.model";
-import { corsHeaders } from "../utils/cors";
+import { createOrder } from '../db/order.model';
+import { corsHeaders } from '../utils/cors';
 
 interface OrderItem {
 	id: number;
@@ -24,26 +24,16 @@ export const orderHandler = async (request: Request): Promise<Response> => {
 	try {
 		const body = (await request.json()) as OrderRequest;
 
-		if (
-			!body.customer_name ||
-			!body.customer_email ||
-			!Array.isArray(body.items)
-		) {
-			return badRequest("Missing data");
+		if (!body.customer_name || !body.customer_email || !Array.isArray(body.items)) {
+			return badRequest('Missing data');
 		}
 
 		for (const item of body.items) {
 			if (!item.id || !item.name || !item.quantity) {
-				return badRequest("Invalid item data");
+				return badRequest('Invalid item data');
 			}
 
-			createOrder(
-				body.customer_name,
-				body.customer_email,
-				item.id,
-				item.name,
-				item.quantity,
-			);
+			createOrder(body.customer_name, body.customer_email, item.id, item.name, item.quantity);
 		}
 
 		return new Response(JSON.stringify({ success: true }), {
@@ -51,7 +41,7 @@ export const orderHandler = async (request: Request): Promise<Response> => {
 			headers: corsHeaders,
 		});
 	} catch (error) {
-		console.error("Error in orderHandler:", error);
-		return badRequest("Bad request");
+		console.error('Error in orderHandler:', error);
+		return badRequest('Bad request');
 	}
 };

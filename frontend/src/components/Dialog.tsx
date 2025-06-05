@@ -1,7 +1,7 @@
-import RatinngStars from "./RatingStars";
-import "../style/components.css";
-import React from "react";
-import type { DialogProps } from "../../types";
+import RatinngStars from './RatingStars';
+import '../style/components.css';
+import React from 'react';
+import type { DialogProps } from '../../types';
 
 const Dialog = React.memo(({ onClose, onSubmitRating }: DialogProps) => {
 	return (
