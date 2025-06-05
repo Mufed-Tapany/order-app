@@ -1,3 +1,5 @@
+import type { CartItem } from '../../types';
+
 const API_BASE = import.meta.env.VITE_API_URL_DEV;
 
 export const fetchMenu = async () => {
@@ -6,7 +8,7 @@ export const fetchMenu = async () => {
 	return response.json();
 };
 
-export const placeOrder = async (cartItems, customerName, customerEmail) => {
+export const placeOrder = async (cartItems: CartItem[], customerName: string, customerEmail: string) => {
 	const response = await fetch(`${API_BASE}/order`, {
 		method: 'POST',
 		headers: {
