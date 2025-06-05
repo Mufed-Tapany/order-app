@@ -121,7 +121,6 @@ const Cart = () => {
 									name="name"
 									placeholder="Your name"
 									value={name}
-									defaultValue={''}
 									onChange={(e) => setName(e.target.value)}
 									form={formId}
 									required
@@ -132,7 +131,6 @@ const Cart = () => {
 									name="email"
 									placeholder="Email address"
 									value={email}
-									defaultValue={''}
 									onChange={(e) => setEmail(e.target.value)}
 									form={formId}
 									required
