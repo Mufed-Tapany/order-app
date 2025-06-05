@@ -20,7 +20,7 @@ const Main = () => {
 	return (
 		<div>
 			<h1 className="centered-site">Menu</h1>
-			<div className="menuList">
+			<div className="menu-list">
 				{items.map((item: CartItem) => (
 					<MenuCard key={item.id} item={item} addToCart={addToCart} />
 				))}

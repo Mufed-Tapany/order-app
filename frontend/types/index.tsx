@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 
 export interface CartItem {
+	rating?: undefined;
+	image?: string;
 	id: number;
 	name: string;
 	price: number;
